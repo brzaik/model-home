@@ -12,12 +12,14 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'less-rails-bootstrap'
+  #gem 'less-rails-bootstrap'
 
   gem "therubyracer", :require => 'v8'
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'less-rails-bootstrap'
 
 gem 'jquery-rails'
 gem 'jquery-rails-cdn'
