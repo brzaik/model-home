@@ -1,0 +1,49 @@
+<%= form_for(@page) do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :is_homepage %><br />
+    <%= f.check_box :is_homepage %>
+  </div>
+  <div class="field">
+    <%= f.label :is_project %><br />
+    <%= f.check_box :is_project %>
+  </div>
+  <div class="field">
+    <%= f.label :main_menu_item_id %><br />
+    <%= f.number_field :main_menu_item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :upload_id %><br />
+    <%= f.number_field :upload_id %>
+  </div>
+  <div class="field">
+    <%= f.label :template_id %><br />
+    <%= f.number_field :template_id %>
+  </div>
+  <div class="field">
+    <%= f.label :slug %><br />
+    <%= f.text_field :slug %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

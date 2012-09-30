@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  row_id: 1
+  position: 1
+  span_width: 1
+  additional_styles: MyString
+  additional_tags: MyString
+
+two:
+  row_id: 1
+  position: 1
+  span_width: 1
+  additional_styles: MyString
+  additional_tags: MyString

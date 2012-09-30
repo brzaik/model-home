@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Block:</b>
+  <%= @richtext.block_id %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @richtext.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_richtext_path(@richtext) %> |
+<%= link_to 'Back', richtexts_path %>

@@ -1,0 +1,31 @@
+<h1>Listing columns</h1>
+
+<table>
+  <tr>
+    <th>Row</th>
+    <th>Position</th>
+    <th>Span width</th>
+    <th>Additional styles</th>
+    <th>Additional tags</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @columns.each do |column| %>
+  <tr>
+    <td><%= column.row_id %></td>
+    <td><%= column.position %></td>
+    <td><%= column.span_width %></td>
+    <td><%= column.additional_styles %></td>
+    <td><%= column.additional_tags %></td>
+    <td><%= link_to 'Show', column %></td>
+    <td><%= link_to 'Edit', edit_column_path(column) %></td>
+    <td><%= link_to 'Destroy', column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Column', new_column_path %>

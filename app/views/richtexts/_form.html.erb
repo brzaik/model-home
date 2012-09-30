@@ -1,0 +1,25 @@
+<%= form_for(@richtext) do |f| %>
+  <% if @richtext.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@richtext.errors.count, "error") %> prohibited this richtext from being saved:</h2>
+
+      <ul>
+      <% @richtext.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :block_id %><br />
+    <%= f.number_field :block_id %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Row:</b>
+  <%= @column.row_id %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @column.position %>
+</p>
+
+<p>
+  <b>Span width:</b>
+  <%= @column.span_width %>
+</p>
+
+<p>
+  <b>Additional styles:</b>
+  <%= @column.additional_styles %>
+</p>
+
+<p>
+  <b>Additional tags:</b>
+  <%= @column.additional_tags %>
+</p>
+
+
+<%= link_to 'Edit', edit_column_path(@column) %> |
+<%= link_to 'Back', columns_path %>
