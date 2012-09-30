@@ -1,0 +1,30 @@
+<div class="tw-signpost">
+  <div id="logotop_alt">
+    <%= image_tag("layout/logo_sitetop.png", :alt => "Two Weeks from Everywhere Productions") %>
+  </div>
+  <ul class="nav nav-list tw-signpost">
+    <% @homepage_list = Page.homepage.all %>
+    <% if @homepage_list.size == 1 %>
+      <li class="menuitem1 <%= controller.controller_name == 'pages' && controller.action_name == 'show' && @page.slug == 'homepage' ? 'selected' : '' %>">
+        <%= link_to @homepage_list[0] do %>
+          Home
+        <% end %>
+      </li>
+    <% end %>
+    <li class="menuitem2 <%= controller.controller_name == 'pages' && controller.action_name == 'show' && @page.slug == 'american-detour' ? 'selected' : '' %>">
+      <%= link_to Page.find(2) do %>
+        Projects
+      <% end %>
+    </li>
+    <li class="menuitem3 <%= controller.controller_name == 'pages' && controller.action_name == 'show' && @page.slug == 'about' ? 'selected' : '' %>">
+      <%= link_to Page.find(3) do %>
+        About
+      <% end %>
+    </li>
+    <li class="menuitem4 <%= controller.controller_name == 'contacts' ? 'selected' : '' %>">
+      <%= link_to new_contact_path do %>
+        Contact Us
+      <% end %>
+    </li>
+  </ul>
+</div>

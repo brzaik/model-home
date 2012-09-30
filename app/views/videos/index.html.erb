@@ -4,6 +4,7 @@
   <tr>
     <th>Title</th>
     <th>Url</th>
+    <th>Type</th>
     <th>Videoable</th>
     <th>Videoable type</th>
     <th></th>
@@ -15,11 +16,12 @@
   <tr>
     <td><%= video.title %></td>
     <td><%= video.url %></td>
+    <td><%= video.type %></td>
     <td><%= video.videoable_id %></td>
     <td><%= video.videoable_type %></td>
     <td><%= link_to 'Show', video %></td>
     <td><%= link_to 'Edit', edit_video_path(video) %></td>
-    <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', video, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

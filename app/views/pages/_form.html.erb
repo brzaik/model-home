@@ -12,38 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "fillWidth" %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => 'ckeditor' %>
   </div>
   <div class="field">
-    <%= f.label :is_homepage %><br />
-    <%= f.check_box :is_homepage %>
+    <%= f.check_box :is_homepage %> <%= f.label :is_homepage %>
   </div>
   <div class="field">
-    <%= f.label :is_project %><br />
-    <%= f.check_box :is_project %>
+    <%= f.check_box :is_project %> <%= f.label :is_project %>
   </div>
   <div class="field">
-    <%= f.label :main_menu_item_id %><br />
+    <%= f.label :main_menu_item_id %>
     <%= f.number_field :main_menu_item_id %>
   </div>
   <div class="field">
-    <%= f.label :upload_id %><br />
-    <%= f.number_field :upload_id %>
+    <%= f.label :template_id %>
+    <%= f.collection_select(:template_id, @templates, :id, :template_name, :include_blank => true) %>
   </div>
+
   <div class="field">
-    <%= f.label :template_id %><br />
-    <%= f.number_field :template_id %>
+    <%= f.label :upload_id, "Main Logo Upload" %>
+    <%= f.collection_select(:upload_id, Upload.all, :id, :myfile_file_name, :include_blank => true) %>
   </div>
-  <div class="field">
-    <%= f.label :slug %><br />
-    <%= f.text_field :slug %>
-  </div>
+  <br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit button_text, :class => "btn btn-primary" %>
   </div>
 <% end %>

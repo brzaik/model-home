@@ -1,11 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :logovid, :homepage]
-
-  def logovid
-    respond_to do |format|
-      format.html { render :layout => "plain" }
-    end
-  end
+  before_filter :authenticate_user!, :except => [:show, :homepage]
 
   def homepage
     @all_homepages = Page.homepage.all

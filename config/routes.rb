@@ -1,4 +1,16 @@
 ModelHome::Application.routes.draw do
+  devise_for :users
+
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+  end
+
+  resources :users do
+    member do
+      get 'toggle_view'
+    end
+  end
+
   resources :main_menu_items
 
   resources :videos
@@ -9,21 +21,32 @@ ModelHome::Application.routes.draw do
 
   resources :templates
 
-  resources :rows
-
   resources :richtexts
 
-  resources :pages
+  resources :pages do
+
+    resources :rows
+
+    resources :images
+
+    resources :videos
+  end
+
+  resources :rows do 
+    resources :columns
+  end
+  
+  resources :columns do
+    resources :blocks
+  end
 
   resources :images
 
   resources :contacts
 
-  resources :columns
+  match "homepage" => "pages#homepage"
 
-  resources :blocks
-
-  root :to => 'pages#logovid'
+  root :to => 'pages#homepage'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

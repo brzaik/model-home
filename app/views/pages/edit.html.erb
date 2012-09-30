@@ -1,6 +1,7 @@
 <h1>Editing page</h1>
 
-<%= render 'form' %>
+<%= render :partial => 'pages/form', :locals => { :button_text => "Update Page" } %>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<% content_for :head do %>
+  <script src="/ckeditor/ckeditor.js"></script>
+<% end %>

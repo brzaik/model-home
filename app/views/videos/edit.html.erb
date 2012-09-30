@@ -1,6 +1,3 @@
-<h1>Editing video</h1>
+<h1>Editing Trailer Video</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @video %> |
-<%= link_to 'Back', videos_path %>
+<%= render :partial => 'videos/form', :locals => { :button_text => "Update Video" } %>

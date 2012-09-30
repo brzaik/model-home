@@ -1,6 +1,7 @@
 <h1>Editing block</h1>
 
-<%= render 'form' %>
+<%= render :partial => 'blocks/form', :locals => { :button_text => "Update Block" } %>
 
-<%= link_to 'Show', @block %> |
-<%= link_to 'Back', blocks_path %>
+<% content_for :head do %>
+  <script src="/ckeditor/ckeditor.js"></script>
+<% end %>

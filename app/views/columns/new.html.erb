@@ -1,5 +1,3 @@
-<h1>New column</h1>
+<h1>New Column</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', columns_path %>
+<%= render :partial => 'columns/form', :locals => { :button_text => "Create Column" } %>

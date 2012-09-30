@@ -4,8 +4,6 @@
   <tr>
     <th>Page</th>
     <th>Position</th>
-    <th>Additional styles</th>
-    <th>Additional tags</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,8 +13,6 @@
   <tr>
     <td><%= row.page_id %></td>
     <td><%= row.position %></td>
-    <td><%= row.additional_styles %></td>
-    <td><%= row.additional_tags %></td>
     <td><%= link_to 'Show', row %></td>
     <td><%= link_to 'Edit', edit_row_path(row) %></td>
     <td><%= link_to 'Destroy', row, method: :delete, data: { confirm: 'Are you sure?' } %></td>

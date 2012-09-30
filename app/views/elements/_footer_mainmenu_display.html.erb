@@ -1,0 +1,12 @@
+<p>
+  <%= link_to "Home", homepage_path %>
+  &nbsp;&nbsp;
+  <% MainMenuItem.all.each do |menuitem| %>
+    <% thispage = Page.find(menuitem.page_id) %>
+    <% if not thispage.is_homepage? %>
+      <%= link_to menuitem.title, thispage %>
+      &nbsp;&nbsp;
+    <% end %>
+  <% end %>
+  <%= link_to "Contact", new_contact_path %>
+</p>

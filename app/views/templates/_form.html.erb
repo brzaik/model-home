@@ -12,10 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :template_name %><br />
+    <%= f.label :template_name %>
     <%= f.text_field :template_name %>
   </div>
+  <br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit button_text, :class => "btn btn-primary" %>
   </div>
 <% end %>
