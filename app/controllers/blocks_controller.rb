@@ -1,4 +1,11 @@
 class BlocksController < ApplicationController
+  before_filter :get_column, :authenticate_user!
+  
+  def get_column
+    @column = Column.find(params[:column_id])
+  end
+
+
   # GET /blocks
   # GET /blocks.json
   def index
@@ -6,7 +13,7 @@ class BlocksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @blocks }
+      format.json { render :json => @blocks }
     end
   end
 
@@ -14,10 +21,11 @@ class BlocksController < ApplicationController
   # GET /blocks/1.json
   def show
     @block = Block.find(params[:id])
+    @block.column = @column
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @block }
+      format.json { render :json => @block }
     end
   end
 
@@ -25,10 +33,11 @@ class BlocksController < ApplicationController
   # GET /blocks/new.json
   def new
     @block = Block.new
+    @block.column = @column
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @block }
+      format.json { render :json => @block }
     end
   end
 
@@ -41,14 +50,16 @@ class BlocksController < ApplicationController
   # POST /blocks.json
   def create
     @block = Block.new(params[:block])
+    @block.column = @column
+    @page = @column.row.page
 
     respond_to do |format|
       if @block.save
-        format.html { redirect_to @block, notice: 'Block was successfully created.' }
-        format.json { render json: @block, status: :created, location: @block }
+        format.html { redirect_to @page, :notice => 'Block was successfully created.' }
+        format.json { render :json => @block, :status => :created, :location => @block }
       else
-        format.html { render action: "new" }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @block.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -57,14 +68,16 @@ class BlocksController < ApplicationController
   # PUT /blocks/1.json
   def update
     @block = Block.find(params[:id])
+    @block.column = @column
+    @page = @column.row.page
 
     respond_to do |format|
       if @block.update_attributes(params[:block])
-        format.html { redirect_to @block, notice: 'Block was successfully updated.' }
+        format.html { redirect_to @page, :notice => 'Block was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @block.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -73,10 +86,11 @@ class BlocksController < ApplicationController
   # DELETE /blocks/1.json
   def destroy
     @block = Block.find(params[:id])
+    @page = @block.column.row.page
     @block.destroy
 
     respond_to do |format|
-      format.html { redirect_to blocks_url }
+      format.html { redirect_to @page, :notice => 'Block was successfully deleted.' }
       format.json { head :no_content }
     end
   end

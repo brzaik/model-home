@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /images
   # GET /images.json
   def index
@@ -6,7 +8,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @images }
+      format.json { render :json => @images }
     end
   end
 
@@ -17,18 +19,20 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @image }
+      format.json { render :json => @image }
     end
   end
 
   # GET /images/new
   # GET /images/new.json
+  # this is meant to be accessed through new_page_image_path!
   def new
+    @imageable = find_imageable
     @image = Image.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @image }
+      format.json { render :json => @image }
     end
   end
 
@@ -40,15 +44,16 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(params[:image])
+    @imageable = find_imageable
+    @image = @imageable.images.build(params[:image])
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render json: @image, status: :created, location: @image }
+        format.html { redirect_to @imageable, :notice => 'Image was successfully created.' }
+        format.json { render :json => @image, :status => :created, :location => @image }
       else
-        format.html { render action: "new" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @image.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +65,11 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.update_attributes(params[:image])
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to @image, :notice => 'Image was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @image.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -73,11 +78,24 @@ class ImagesController < ApplicationController
   # DELETE /images/1.json
   def destroy
     @image = Image.find(params[:id])
+    @imageable = find_imageable
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url }
+      format.html { redirect_to @imageable, :notice => "Image was successfully deleted." }
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def find_imageable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end
+
 end

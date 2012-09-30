@@ -1,4 +1,6 @@
 ModelHome::Application.routes.draw do
+  resources :main_menu_items
+
   resources :videos
 
   resources :uploads
@@ -20,6 +22,8 @@ ModelHome::Application.routes.draw do
   resources :columns
 
   resources :blocks
+
+  root :to => 'pages#logovid'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

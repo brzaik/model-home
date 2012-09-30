@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930034347) do
+ActiveRecord::Schema.define(:version => 20120930040156) do
 
   create_table "blocks", :force => true do |t|
     t.string   "content_name"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20120930034347) do
     t.string   "url_link"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "main_menu_items", :force => true do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.integer  "page_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pages", :force => true do |t|
